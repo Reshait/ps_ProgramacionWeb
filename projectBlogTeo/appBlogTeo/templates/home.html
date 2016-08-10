@@ -5,7 +5,7 @@
 	{% if listadoEntradas %}
 		<ul>
 			{% for Entrada in listadoEntradas %}
-				<li><h1><a href="/appBlogTeo/{{Entrada.id}}/">{{Entrada.titulo}}</a></li></h1>
+				<li><h1><a href="{% url 'appBlogTeo:entradaCompleta' Entrada.id %}/">{{Entrada.titulo}}</a></li></h1> 
 				<p>{{Entrada.cuerpo}}</p>
 				<p>{{Entrada.fecha}}</p>
 			{% endfor %}
