@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog de Teo</title>
+</head>
+<body>
+{% if listadoEntradas %}
+	<ul>
+		{% for Entrada in listadoEntradas %}
+			<li><h1><a href="/appBlogTeo/{{Entrada.id}}/">{{Entrada.titulo}}</li></h1>
+			<p>{{Entrada.cuerpo}}</p>
+			<p>{{Entrada.fecha}}</p>
+		{% endfor %}
+	</ul>
+{% else %}
+	<h1>Sin entradas</h1>
+	<p>La base de datos por el momento no tiene entradas. Por favor, introduzca al menos una para poder contemplarla</p>
+{% endif %}
+</body>
+</html>
