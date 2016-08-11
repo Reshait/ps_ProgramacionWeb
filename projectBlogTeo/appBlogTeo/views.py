@@ -12,3 +12,6 @@ def entradaCompleta(request, entrada_id):
 	entrada = get_object_or_404(Entrada, pk=entrada_id)
 	return render(request, 'entradaCompleta.html', {'entrada':entrada})
 
+#def entradaCompleta(request, id):
+#	entrada = get_object_or_404(Entrada, pk=id)
+#	return render(request, 'entradaCompleta.html', {'entrada':entrada})
