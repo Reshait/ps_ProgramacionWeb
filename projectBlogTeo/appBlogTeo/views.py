@@ -12,7 +12,12 @@ class VistaHome(generic.ListView):
 	context_object_name = 'listadoEntradas'
 
 	def get_queryset(self):
-		return Entrada.objects.order_by('-fecha')[:4]
+		listado = Entrada.objects.order_by('-fecha')[:4]
+		for i in listado:
+			if len(i.cuerpo) >= 150:
+				i.cuerpo = i.cuerpo[0:150] + "...      -> leer +"
+
+		return listado
 
 class VistaEntradaCompleta(generic.DetailView):
 	model = Entrada

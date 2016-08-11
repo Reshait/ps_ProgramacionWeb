@@ -5,7 +5,18 @@
 	<meta charset="utf-8">
 </head>
 <body>
-{% block content %}
-{% endblock %}
+	<article>
+		<h1>Blog de Teo</h1>
+		{% block content %}
+		{% endblock %}		
+	</article>
+	<nav>
+		{% block paginator %}
+		{% endblock %}
+	</nav>
+
 </body>
+<footer>
+	(c) 2016 Teófilo Rojas Mata
+</footer>
 </html>
