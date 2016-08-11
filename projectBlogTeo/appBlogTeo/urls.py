@@ -5,6 +5,6 @@ from . import views
 app_name = 'appBlogTeo'
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
-	url(r'^entrada/(?P<Entrada_id>[0-9]+)$', views.entradaCompleta, name='entradaCompleta'),
+	url(r'^entrada/(?P<entrada_id>[0-9]+)$', views.entradaCompleta, name='entradaCompleta'),
 
 ]
