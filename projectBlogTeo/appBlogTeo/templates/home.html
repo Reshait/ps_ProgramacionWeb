@@ -20,11 +20,13 @@
 
 
 {% block paginator %}
-	{% if entrada.has_previous %}
-		<a href="?page={{ entrada.previous_page_number }}">Página anterior</a>
-	{% else %}
-		<a href="?page={{ entrada.next_page_number }}">Página siguiente</a>
+	{% if listadoEntradas.has_previous %}
+		<a href="?listadoEntradasPagina={{ listadoEntradas.previous_page_number }}">Página anterior</a>
 	{% endif %}
-		<p>Página {{entrada.number}} de {{entrada.num_pages}}</p
 
+	{% if listadoEntradas.has_next %}
+		<a href="?listadoEntradasPagina={{ listadoEntradas.next_page_number }}">Página siguiente</a>
+	{% endif %}
+	
+	<p>Página {{ listadoEntradas.number }} de {{ listadoEntradas.paginator.num_pages }}</p>
 {% endblock %}
