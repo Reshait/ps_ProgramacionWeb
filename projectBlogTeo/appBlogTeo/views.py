@@ -26,7 +26,12 @@ def listing(request):
     listadoEntradas = Entrada.objects.all()
     paginator = Paginator(listadoEntradas, 4) # Show 25 contacts per page
 
+    for i in listadoEntradas:
+		if len(i.cuerpo) >= 150:
+			i.cuerpo = i.cuerpo[0:150] + "...      -> leer +"
+
     listadoEntradasPagina = request.GET.get('listadoEntradasPagina')
+
     try:
         entradas = paginator.page(listadoEntradasPagina)
     except PageNotAnInteger:
