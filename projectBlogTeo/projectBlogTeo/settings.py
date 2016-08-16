@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Las mias
     'appBlogTeo',
+    'cuentasUsuario',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Para app gestion de usuaios
+LOGIN_URL = '/cuentasUsuario/login/'
+LOGOUT_URL = '/cuentasUsuario/logout/'

@@ -20,4 +20,5 @@ from appBlogTeo import views
 urlpatterns = [
     url(r'^', include ('appBlogTeo.urls', namespace = 'home')),
     url(r'^admin/', admin.site.urls),
+    url(r'^cuentasUsuario/', include('cuentasUsuario.urls')),
 ]

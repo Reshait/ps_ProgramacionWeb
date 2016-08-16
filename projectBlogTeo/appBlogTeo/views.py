@@ -3,6 +3,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# Para formularios:
+from django.forms import ModelForm
+#from django.core.context_processors import csrf #--> para versiones > django 1.10
+from django.views.decorators import csrf
+
 
 from .models import Entrada
 
@@ -22,7 +27,7 @@ from .models import Entrada
 #
 #		return listado
 
-def listing(request):
+def ListadoHome(request):
     listadoEntradas = Entrada.objects.all()
     paginator = Paginator(listadoEntradas, 4) # Show 25 contacts per page
 
@@ -42,8 +47,6 @@ def listing(request):
         entradas = paginator.page(paginator.num_pages)
 
     return render(request, 'home.html', {'listadoEntradas': entradas})
-
-
 
 
 class VistaEntradaCompleta(generic.DetailView):

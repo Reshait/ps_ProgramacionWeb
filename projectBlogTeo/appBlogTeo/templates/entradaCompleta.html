@@ -5,5 +5,13 @@
 	<h1>{{ entrada.titulo }}</h1>
 	<p> {{ entrada.cuerpo }}</p>
 	<p> {{ entrada.fecha }}</p>
-
+<!--
+	<form action="{% url '' id}" metod="POST">
+	{% csrf_token %}
+		<p>Nombre: {{ form.autor }}</p>
+		<p>Mensaje: {{ form.mensaje }}</p>
+		<p><input type="submit" value="Enviar" =""></ins></p>
+	</form>
+-->
 {% endblock %}
+
