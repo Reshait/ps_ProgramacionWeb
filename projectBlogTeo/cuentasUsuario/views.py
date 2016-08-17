@@ -41,12 +41,12 @@ def vistaRegistroUsuario(request):
             # una imagen, ya quedara la referencia creada en la db.
             user_profile = PerfilUsuario()
             # Al campo user le asignamos el objeto user_model
-            user_profile.user = user_model
+            user_profile.usuario = user_model
             # Por ultimo, guardamos tambien el objeto UserProfile
             user_profile.save()
             # Ahora, redireccionamos a la pagina cuentasUsuario/gracias.html
             # Pero lo hacemos con un redirect.
-            return redirect(reverse('cuentasUsuario.gracias', kwargs={'nombreUsuario': nombreUsuario}))
+            return redirect(reverse('cuentasUsuario.vistaGracias', kwargs={'nombreUsuario': nombreUsuario}))
     else:
         # Si el mthod es GET, instanciamos un objeto RegistroUsuario vacio
         form = RegistroUsuario()
