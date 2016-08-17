@@ -5,6 +5,10 @@
 	<meta charset="utf-8">
 </head>
 <body>
+	<!-- Para los mensajes de logout -->
+	{% include '_mensajes.html' %}
+	{% block content %}{% endblock content %}
+
 	<article>
 		<h1>Blog de Teo</h1>
 		{% block content %}

@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .forms import RegistroUsuario
 from .models import PerfilUsuario
@@ -58,3 +61,37 @@ def vistaRegistroUsuario(request):
 
 def vistaGracias(request, nombreUsuario):
     return render(request, 'gracias.html', {'nombreUsuario': nombreUsuario})
+
+
+@login_required
+def vistaIndex(request):
+    return render(request, 'index.html')
+
+
+def vistaLogin(request):
+    # Si el usuario esta ya logueado, lo redireccionamos a vistaIndex
+    if request.user.is_authenticated():
+        return redirect(reverse('cuentasUsuario.index'))
+
+    mensaje = ''
+    if request.method == 'POST':
+        nombreUsuario = request.POST.get('username')
+        password = request.POST.get('password')
+        usuario = authenticate(username=nombreUsuario, password=password)
+        if usuario is not None:
+            if usuario.is_active:
+                login(request, usuario)
+                return redirect(reverse('cuentasUsuario.index'))
+            else:
+                # Redireccionar informando que la cuenta esta inactiva
+                # Lo dejo como ejercicio al lector :)
+                pass
+        mensaje = 'Nombre de usuario o password no valido'
+    return render(request, 'login.html', {'mensaje': mensaje})
+
+
+def vistaLogout(request):
+    logout(request)
+    messages.success(request, 'Te has desconectado con exito.')
+    return redirect(reverse('cuentasUsuario.vistaLogin'))
+
