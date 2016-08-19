@@ -33,6 +33,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
 
+          <!-- Parte derecha dedicada a los usuarios -->
 
           <ul class="nav navbar-nav navbar-right">
               {% if user.is_authenticated %}
@@ -43,10 +44,6 @@
                 <li><a href="{% url 'cuentasUsuario.login' %}" style="font-weight:lighter">login</a></li>
               {% endif %}
           </ul>
-
-
-
-
         </div><!--/.nav-collapse -->
       </div>
     </nav>
