@@ -43,11 +43,32 @@ a {
     background-color: white;
 }
 
+.navbar-inverse .navbar-nav > li > a {
+    color: #333b41;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #ee7c1b;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #ee7c1b;
+    background-color: transparent;
+}
+
 footer {
     background-color: white;
     color: #89898A;
     font-size: 14px;
     text-align: center;
+    margin-top: 20px;
+}
+
+.navbar-brand {
+    font-size: inherit;
+    color: inherit !important;
+    font-weight: initial;
 }
 
 .firma {

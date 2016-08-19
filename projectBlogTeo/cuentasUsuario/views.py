@@ -93,5 +93,5 @@ def vistaLogin(request):
 def vistaLogout(request):
     logout(request)
     messages.success(request, 'Te has desconectado con exito.')
-    return redirect(reverse('cuentasUsuario.vistaLogin'))
+    return redirect(reverse('cuentasUsuario.login'))
 

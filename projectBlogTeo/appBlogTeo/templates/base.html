@@ -15,10 +15,6 @@
 	<title>Blog de Teo</title>
 </head>
 <body>
-	<!-- Para los mensajes de logout -->
-	{% include '_mensajes.html' %}
-	{% block mensajes %}{% endblock mensajes %}
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -36,6 +32,21 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'cuentasUsuario.index' %}">{{ user.username }}</a></li>
+                <li><a href="{% url 'cuentasUsuario.logout' %}" style="font-weight:lighter">logout</a></li>
+              {% else %}
+                <li><a href="{% url 'cuentasUsuario.vistaRegistroUsuario' %}">Registro</a></li>
+                <li><a href="{% url 'cuentasUsuario.login' %}" style="font-weight:lighter">login</a></li>
+              {% endif %}
+          </ul>
+
+
+
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -43,20 +54,32 @@
 	<div class="container">
 		
 		<div class="starter-template"></div>
-			{% block content %}
-			{% endblock %}	
+			<div class="row">
+				<div class="col-md-9">
+          <!-- Para los mensajes de logout -->
+          {% include '_mensajes.html' %}
 
-			{% block paginator %}
-			{% endblock %}
-	
+          <!-- Para la lista de entradas -->
+					{% block content %}
+					{% endblock %}
+
+					{% block paginator %}
+					{% endblock %}
+				</div>
+				<div class="col-md-3">
+					<p>Para Menú Vertical</p>
+				</div>
+			</div> <!-- /.row-->
 		</div>
 
 	</div> <!-- /.container -->
 
 </body>
+
 <footer>
 	<div class="firma">
 		(c) 2016 Teófilo Rojas Mata
 	</div>
 </footer>
+
 </html>
