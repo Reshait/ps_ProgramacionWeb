@@ -7,5 +7,5 @@ urlpatterns = [
 	url(r'^$', views.ListadoHome, name='home'),
 	url(r'^entrada/(?P<pk>.*)$', views.VistaEntradaCompleta.as_view(), name='VistaEntradaCompleta'),
     url(r'^acerca/$', views.VistaAcerca.as_view(), name='acerca'),
-
+    url(r'^contact/$', views.VistaContacto.as_view(), name='contacto'),
 ]

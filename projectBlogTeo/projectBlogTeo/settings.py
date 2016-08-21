@@ -117,6 +117,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = 'testing@example.com'
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
