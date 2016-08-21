@@ -5,8 +5,9 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
-from .forms import RegistroUsuario, EditarEmailForm
+from .forms import RegistroUsuario, EditarEmailForm, EditarContrasenaForm
 from .models import PerfilUsuario
 
 # Create your views here.
@@ -110,3 +111,18 @@ def editar_email(request):
             request=request,
             initial={'email': request.user.email})
     return render(request, 'editarEmail.html', {'form': form})
+
+
+@login_required
+def editar_contrasena(request):
+    if request.method == 'POST':
+        form = EditarContrasenaForm(request.POST)
+        if form.is_valid():
+            request.user.password = make_password(form.cleaned_data['password'])
+            request.user.save()
+            messages.success(request, 'El password ha sido cambiado con exito!.')
+            messages.success(request, 'Es necesario introducir los datos para entrar.')
+            return redirect(reverse('cuentasUsuario.index'))
+    else:
+        form = EditarContrasenaForm()
+    return render(request, 'editarContrasenia.html', {'form': form})

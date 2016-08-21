@@ -1,0 +1,11 @@
+{% extends 'menuLateral.html' %}
+
+{% block content %}
+    <h2 class="page-header">Editar Password</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Actualizar contraseña</button>
+        <a href="{% url 'cuentasUsuario.index' %}" class="btn btn-warning" type="submit">Cancelar</a>
+    </form>
+{% endblock content %}

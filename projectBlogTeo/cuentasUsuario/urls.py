@@ -10,5 +10,6 @@ urlpatterns = [
 	url(r'^registro/$', views.vistaRegistroUsuario, name='cuentasUsuario.vistaRegistroUsuario'),
 	url(r'^gracias/(?P<nombreUsuario>[\w]+)/$', views.vistaGracias, name='cuentasUsuario.vistaGracias'),
 	url(r'^editarEmail/$', views.editar_email, name='cuentasUsuario.editar_email'),
+	url(r'^editar_contrasena/$', views.editar_contrasena, name='cuentasUsuario.editar_contrasena'),
 
 ]

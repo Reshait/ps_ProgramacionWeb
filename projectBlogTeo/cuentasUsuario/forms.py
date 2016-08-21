@@ -49,3 +49,28 @@ class EditarEmailForm(forms.Form):
             if existe:
                 raise forms.ValidationError('Ya existe un email igual en la db.')
         return email
+
+class EditarContrasenaForm(forms.Form):
+
+    actual_password = forms.CharField(
+        label='Password actual',
+        min_length=5,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    password = forms.CharField(
+        label='Nueva password',
+        min_length=5,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    password2 = forms.CharField(
+        label='Repetir password',
+        min_length=5,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    def clean_password2(self):
+        """Comprueba que password y password2 sean iguales."""
+        password = self.cleaned_data['password']
+        password2 = self.cleaned_data['password2']
+        if password != password2:
+            raise forms.ValidationError('Los paswords no coinciden.')
+        return password2
