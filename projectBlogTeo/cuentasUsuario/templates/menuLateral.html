@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block lateral %}
+    <div class="row">
+        <div style="padding-left: 15px;padding-right: 15px;">
+            <div class="list-group">
+                <a href="{% url 'cuentasUsuario.editar_email' %}" class="list-group-item">Editar email</a>
+
+                <a href="#" class="list-group-item">Editar contraseña</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            {% block contenidoCuentas %}{% endblock contenidoCuentas %}
+        </div>
+    </div>
+{% endblock lateral %}

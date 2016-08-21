@@ -1,0 +1,13 @@
+{% extends 'menuLateral.html' %}
+
+{% block content %}
+    <h2 class="page-header">Editar Email</h2>
+    <p>Usuario: <strong>{{ user.username }}</strong></p>
+    <!--<p>Email: <strong>{{ user.email }}</strong></p>-->
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Actualizar Email</button>
+        <a href="{% url 'cuentasUsuario.index' %}" class="btn btn-warning" type="submit">Cancelar</a>
+    </form>
+{% endblock content %}

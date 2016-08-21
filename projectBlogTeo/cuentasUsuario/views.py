@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import RegistroUsuario
+from .forms import RegistroUsuario, EditarEmailForm
 from .models import PerfilUsuario
 
 # Create your views here.
@@ -95,3 +95,18 @@ def vistaLogout(request):
     messages.success(request, 'Te has desconectado con exito.')
     return redirect(reverse('cuentasUsuario.login'))
 
+
+@login_required
+def editar_email(request):
+    if request.method == 'POST':
+        form = EditarEmailForm(request.POST, request=request)
+        if form.is_valid():
+            request.user.email = form.cleaned_data['email']
+            request.user.save()
+            messages.success(request, 'El email ha sido cambiado con exito!.')
+            return redirect(reverse('index'))
+    else:
+        form = EditarEmailForm(
+            request=request,
+            initial={'email': request.user.email})
+    return render(request, 'editarEmail.html', {'form': form})
