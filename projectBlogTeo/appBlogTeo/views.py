@@ -52,3 +52,9 @@ def ListadoHome(request):
 class VistaEntradaCompleta(generic.DetailView):
 	model = Entrada
 	template_name = 'entradaCompleta.html'
+
+
+class VistaAcerca(generic.View):
+
+    def get(self, request, *args, **kwarg):
+        return render(request, 'acerca.html')
