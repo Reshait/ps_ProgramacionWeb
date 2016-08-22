@@ -7,8 +7,13 @@
 			{% for entrada in listadoEntradas %}
 				<li><h2><a href="{% url 'appBlogTeo:VistaEntradaCompleta' entrada.id %}">
 				   {{ entrada.titulo }}</a></h1></li>
-				<p>{{entrada.cuerpo}}</p>
-				<small>{{entrada.fecha}}</small>
+				<p>{{entrada.cuerpo}} ... </p>
+				<p>
+					<small><a href="{% url 'appBlogTeo:VistaEntradaCompleta' entrada.id %}" class="leerMas">
+				   → leer +</a></small>
+	   				<small class="fecha">{{entrada.fecha}}</small>
+				</p>
+				<br>
 			{% endfor %}
 		</ul>
 	{% else %}
@@ -20,13 +25,18 @@
 
 
 {% block paginator %}
+	<center><p>
 	{% if listadoEntradas.has_previous %}
-		<a href="?listadoEntradasPagina={{ listadoEntradas.previous_page_number }}">Página anterior</a>
-	{% endif %}
-
-	{% if listadoEntradas.has_next %}
-		<a href="?listadoEntradasPagina={{ listadoEntradas.next_page_number }}">Página siguiente</a>
+		<a href="?listadoEntradasPagina={{ listadoEntradas.previous_page_number }}" class="iconPageMasMenos">⧀</a> |
 	{% endif %}
 	
-	<p>Página {{ listadoEntradas.number }} de {{ listadoEntradas.paginator.num_pages }}</p>
+	<small>Página {{ listadoEntradas.number }} de {{ listadoEntradas.paginator.num_pages }}</small>
+
+	{% if listadoEntradas.has_next %}
+		| <a href="?listadoEntradasPagina={{ listadoEntradas.next_page_number }}" class="iconPageMasMenos"> ⧁</a>
+	{% endif %}
+	</p></center>
 {% endblock %}
+
+
+

@@ -35,11 +35,11 @@ from .models import Entrada
 
 def ListadoHome(request):
     listadoEntradas = Entrada.objects.all()
-    paginator = Paginator(listadoEntradas, 4) # Show 25 contacts per page
+    paginator = Paginator(listadoEntradas, 4) 
 
     for i in listadoEntradas:
 		if len(i.cuerpo) >= 150:
-			i.cuerpo = i.cuerpo[0:150] + "...      -> leer +"
+			i.cuerpo = i.cuerpo[0:150] #+ "...      -> leer +"
 
     listadoEntradasPagina = request.GET.get('listadoEntradasPagina')
 
@@ -52,7 +52,13 @@ def ListadoHome(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         entradas = paginator.page(paginator.num_pages)
 
+
     return render(request, 'home.html', {'listadoEntradas': entradas})
+
+
+def ListadoTitulos(request):
+    listadoTitulos = Entrada.objects.all()[:10]
+    return render(request, 'base.html', {'listadoTitulos': listadoTitulos})
 
 
 class VistaEntradaCompleta(generic.DetailView):

@@ -74,3 +74,29 @@ footer {
 .firma {
 	padding: 20px 0;
 }
+
+.iconPageMasMenos{
+    font-size:larger;
+    color: #007aff;
+}
+
+.iconPageMasMenos:hover{
+    font-size:larger;
+    color: #ea9629;
+    text-decoration: none;
+}
+
+.fecha{
+    font-size: 14px;
+    float: right;    
+}
+
+.leerMas{
+    font-size: 14px;
+    float: left; 
+    text-decoration: none;
+}
+
+.leerMas:hover{
+    color: #007aff;
+}

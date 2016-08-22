@@ -1,0 +1,17 @@
+{% block lateral %}
+          <div>
+            <h3>Últimas entradas</h4>
+            {% if listadoTitulos %}
+              <ul>
+                {% for x in listadoTitulos %}
+                  <li><small><a href="{% url 'appBlogTeo:VistaEntradaCompleta' x.id %}">
+                     {{ x.titulo }}</a></small></li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <h4>Sin entradas</h4>
+              <p>La base de datos por el momento no tiene entradas. Por favor, introduzca al menos una para poder contemplarla</p>
+            {% endif %}
+
+          </div>
+{% endblock lateral%}

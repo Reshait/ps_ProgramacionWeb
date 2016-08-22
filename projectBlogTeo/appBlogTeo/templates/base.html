@@ -32,10 +32,13 @@
             {% url 'home:home' as home_url %}
             {% url 'home:acerca' as acerca_url %}
             {% url 'home:contacto' as contacto_url %}
+            {% url 'home:menuLateral' as menuL_url %}
+
 
             <li {% if request.get_full_path == home_url %} class="active" {% endif %}><a href="{% url 'home:home' %}">Home</a></li>
             <li {% if request.get_full_path == acerca_url %} class="active" {% endif %}><a href="{% url 'home:acerca' %}">Acerca</a></li>
-            <li><a href="{% url 'home:contacto' %}">Contacto</a></li>
+            <li {% if request.get_full_path == contacto_url %} class="active" {% endif %}><a href="{% url 'home:contacto' %}">Contacto</a></li>
+            <li><a href="{% url 'home:menuLateral' %}">MenuLateral</a></li>
           </ul>
 
           <!-- Parte derecha dedicada a los usuarios -->
@@ -69,8 +72,8 @@
 					{% endblock %}
 				</div>
 				<div class="col-md-3">
-					<p>Para Menú Vertical</p>
-          {% block lateral%}
+          {% block lateral %}
+            {% include '_menuLateral.html' %}
           {% endblock lateral%}
 				</div>
 			</div> <!-- /.row-->
@@ -82,7 +85,7 @@
 
 <footer>
 	<div class="firma">
-		(c) 2016 Teófilo Rojas Mata
+		ⓒ 2016 Teófilo Rojas Mata
 	</div>
 </footer>
 
