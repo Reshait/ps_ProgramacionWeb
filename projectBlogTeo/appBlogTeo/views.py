@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 #from collection.forms import ContactForm
 # Para formularios:
 from django.forms import ModelForm
@@ -33,13 +34,22 @@ from .models import Entrada
 #
 #		return listado
 
+#def ListadoTitulos(request):
+#    listadoTitulos = Entrada.objects.all()[:10]
+#    return render(request, 'base.html', {'listadoTitulos': listadoTitulos})
+
+def ListadoTitulos():
+    listadoTitulos = Entrada.objects.all()[:10]
+    return listadoTitulos
+
+
 def ListadoHome(request):
     listadoEntradas = Entrada.objects.all()
     paginator = Paginator(listadoEntradas, 4) 
 
     for i in listadoEntradas:
 		if len(i.cuerpo) >= 150:
-			i.cuerpo = i.cuerpo[0:150] #+ "...      -> leer +"
+			i.cuerpo = i.cuerpo[0:150] 
 
     listadoEntradasPagina = request.GET.get('listadoEntradasPagina')
 
@@ -52,24 +62,24 @@ def ListadoHome(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         entradas = paginator.page(paginator.num_pages)
 
-
-    return render(request, 'home.html', {'listadoEntradas': entradas})
-
-
-def ListadoTitulos(request):
-    listadoTitulos = Entrada.objects.all()[:10]
-    return render(request, 'base.html', {'listadoTitulos': listadoTitulos})
+    return render(request, 'home.html', {'listadoEntradas': entradas, 'listadoTitulos':ListadoTitulos()})
 
 
 class VistaEntradaCompleta(generic.DetailView):
-	model = Entrada
-	template_name = 'entradaCompleta.html'
+    model = Entrada
+    template_name = 'entradaCompleta.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(VistaEntradaCompleta, self).get_context_data(**kwargs)
+        context['listadoTitulos'] = ListadoTitulos()
+        return context
 
 
 class VistaAcerca(generic.View):
 
     def get(self, request, *args, **kwarg):
-        return render(request, 'acerca.html')
+        return render(request, 'acerca.html', {'listadoTitulos':ListadoTitulos()})
+
 
 def send_email_contact(email_usuario, subject, body):
     body = '{} ha enviado un email de contacto\n\n{}\n\n{}'.format(email_usuario, subject, body)
@@ -100,4 +110,10 @@ class VistaContacto(generic.FormView):
             send_email_contact(email_usuario, subject, body)
         messages.success(self.request, 'Email enviado con exito')
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(VistaContacto, self).get_context_data(**kwargs)
+        context['listadoTitulos'] = ListadoTitulos()
+        return context
+
 

@@ -12,7 +12,7 @@ class Entrada(models.Model):
 	fecha = models.DateTimeField(default=datetime.now, blank=True)
 	#actualizacion = models.DateTimeField(auto_now=True)
 	#propietario = models.ForeignKey(User)
-	etiquetas = models.ManyToManyField('Etiqueta')
+	etiquetas = models.ManyToManyField('Etiqueta', blank=True)
 
 	def __unicode__ (self):
 		return self.titulo
