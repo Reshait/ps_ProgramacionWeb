@@ -1,4 +1,5 @@
 from django import forms
+from .models import Entrada
 
 class ContactoForm(forms.Form):
     email = forms.EmailField(
@@ -13,3 +14,13 @@ class ContactoForm(forms.Form):
         label='Mensaje',
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
+
+class EntradaCrearForm(forms.ModelForm):
+
+    class Meta:
+        model = Entrada
+        fields = ('titulo', 'cuerpo')
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'cuerpo': forms.Textarea(attrs={'class': 'form-control'})
+        }

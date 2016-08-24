@@ -19,6 +19,7 @@ class Entrada(models.Model):
 
 	class Meta:
 		ordering = ['-fecha']
+    
 
 class Etiqueta(models.Model):
 	nombre = models.CharField(max_length=100, unique=True)

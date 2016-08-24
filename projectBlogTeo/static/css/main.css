@@ -61,8 +61,11 @@ footer {
     background-color: white;
     color: #89898A;
     font-size: 14px;
-    text-align: center;
     margin-top: 20px;
+}
+
+footer a{
+    color:#007aff !important;
 }
 
 .navbar-brand {
@@ -73,6 +76,7 @@ footer {
 
 .firma {
 	padding: 20px 0;
+    text-align: center;
 }
 
 .iconPageMasMenos{

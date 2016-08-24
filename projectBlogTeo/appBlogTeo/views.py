@@ -104,11 +104,41 @@ class VistaContacto(generic.FormView):
             email_usuario = form.cleaned_data.get('email')
             send_email_contact(email_usuario, subject, body)
         messages.success(self.request, 'Email enviado con exito')
-        return super().form_valid(form)
+        return super(VistaContacto, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(VistaContacto, self).get_context_data(**kwargs)
         context['listadoTitulos'] = ListadoTitulos()
         return context
+
+class EntradaCrearVista(generic.CreateView):
+    template_name = 'entradaForm.html'
+    model = Entrada
+    fields = ('titulo', 'cuerpo')
+    success_url = reverse_lazy('crear')
+
+    def get_context_data(self, **kwargs):
+        # Obtenemos el contexto de la clase base
+        context = super(EntradaCrearVista, self).get_context_data(**kwargs)
+        # anyadimos nuevas variables de contexto al diccionario
+        context['titulo'] = 'Crear articulo'
+        context['nombre_btn'] = 'Crear'
+        context['listadoTitulos'] = ListadoTitulos()
+
+        # devolvemos el contexto
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+    # Comprueba si es usuario y
+    # tiene permisos para anyadir un articulo, si no lo tiene, lo
+    # redirecciona a login
+    #       Redireccionar a pagina de login
+        if not request.user.has_perms('blog.add_entrada'):
+            return redirect(settings.LOGIN_URL)
+        return super(EntradaCrearVista, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Entrada enviada correctamente')
+        return super(EntradaCrearVista, self).form_valid(form)        
 
 

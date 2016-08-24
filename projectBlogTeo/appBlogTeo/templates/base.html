@@ -32,10 +32,15 @@
             {% url 'home:home' as home_url %}
             {% url 'home:acerca' as acerca_url %}
             {% url 'home:contacto' as contacto_url %}
+            {% url 'home:crear' as crear_url %}
+
 
             <li {% if request.get_full_path == home_url %} class="active" {% endif %}><a href="{% url 'home:home' %}">Home</a></li>
             <li {% if request.get_full_path == acerca_url %} class="active" {% endif %}><a href="{% url 'home:acerca' %}">Acerca</a></li>
             <li {% if request.get_full_path == contacto_url %} class="active" {% endif %}><a href="{% url 'home:contacto' %}">Contacto</a></li>
+            {% if perms.entrada.can_add %}
+              <li><a href="{% url 'home:crear' %}">Crear artículo</a></li>
+            {% endif %}
           </ul>
 
           <!-- Parte derecha dedicada a los usuarios -->
@@ -81,9 +86,22 @@
 </body>
 
 <footer>
-	<div class="firma">
-		ⓒ 2016 Teófilo Rojas Mata
-	</div>
+  <div class="container">
+    <div class="row" style="padding: 20px 0;">
+      <div class="col-md-3">
+        <h4>Manuales seguidos</h4>
+        <ul>
+          <li><a href="https://docs.djangoproject.com/es/1.10/intro/tutorial01/">DjangoProject</a></li>
+          <li><a href="http://tutorial-django.readthedocs.io/es/latest/index.html">ReadTheDocs</a></li>
+          <li><a href="http://tutorial.djangogirls.org/es/">DjangoGirls</a></li>
+          <li><a href="https://github.com/saul-g/El-libro-de-Django/blob/master/Libros/libro_django1.8.pdf">Saúl DjangoGuía</a> </li>
+        </ul>          
+      </div>
+    </div>
+  </div><!-- /.container -->
+  <div class="firma">
+     ⓒ 2016 Teófilo Rojas Mata
+  </div>
 </footer>
 
 </html>
