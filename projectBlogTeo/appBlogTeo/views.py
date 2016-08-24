@@ -2,12 +2,11 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
-#from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Para formularios:
 from django.forms import ModelForm
-#from django.core.context_processors import csrf #--> para versiones > django 1.10
+#from django.core.context_processors import csrf #--> para versiones < django 1.10
 from django.views.decorators import csrf
 
 from django.contrib import messages
@@ -88,7 +87,7 @@ def send_email_contact(email_usuario, subject, body):
 class VistaContacto(generic.FormView):
 
     template_name = 'contacto.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('home:home')
 
     def dispatch(self, request, *args, **kwargs):
         self.form_class = ContactoForm
@@ -115,7 +114,7 @@ class EntradaCrearVista(generic.CreateView):
     template_name = 'entradaForm.html'
     model = Entrada
     fields = ('titulo', 'cuerpo')
-    success_url = reverse_lazy('crear')
+    success_url = reverse_lazy('home:crear')
 
     def get_context_data(self, **kwargs):
         # Obtenemos el contexto de la clase base
