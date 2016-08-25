@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^acerca/$', views.VistaAcerca.as_view(), name='acerca'),
     url(r'^contact/$', views.VistaContacto.as_view(), name='contacto'),
     url(r'^crear/$', views.EntradaCrearVista.as_view(), name='crear'),
+    url(r'^editar/(?P<pk>.*)/$', views.EntradaActualizarVista.as_view(), name='editar'),
+    url(r'^eliminar/(?P<pk>.*)/$', views.EntradaBorrarVista.as_view(), name='eliminar'),
 ]

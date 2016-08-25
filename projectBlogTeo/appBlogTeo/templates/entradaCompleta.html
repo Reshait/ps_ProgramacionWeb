@@ -5,6 +5,11 @@
 	<h1>{{ entrada.titulo }}</h1>
 	<p> {{ entrada.cuerpo }}</p>
 	<div class="fecha"> {{ entrada.fecha }}</div>
-
+    {% if perms.article.can_change %}
+		<a href="{% url 'home:editar' entrada.id %}" class="btn-teo">Editar</a>
+    {% endif %}
+    {% if perms.article.can_delete %}
+    	<a href="{% url 'home:eliminar' entrada.id %}" class="btn btn-danger">Eliminar</a>
+	{% endif %}
 {% endblock %}
 

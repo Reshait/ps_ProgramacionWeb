@@ -64,6 +64,10 @@ footer {
     margin-top: 20px;
 }
 
+.naranja{
+    color: #ee7c1b;    
+}
+
 footer a{
     color:#007aff !important;
 }
@@ -103,4 +107,9 @@ footer a{
 
 .leerMas:hover{
     color: #007aff;
+}
+
+.btn-teo {
+    color: #007aff !important;
+    
 }

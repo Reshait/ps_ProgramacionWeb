@@ -138,6 +138,54 @@ class EntradaCrearVista(generic.CreateView):
 
     def form_valid(self, form):
         messages.success(self.request, 'Entrada enviada correctamente')
-        return super(EntradaCrearVista, self).form_valid(form)        
+        return super(EntradaCrearVista, self).form_valid(form)   
+
+
+class EntradaActualizarVista(generic.UpdateView):
+    template_name = 'entradaForm.html'
+    model = Entrada
+    fields = ('titulo', 'cuerpo')
+    success_url = reverse_lazy('home:home')
+
+    def get_context_data(self, **kwargs):
+        # Obtenemos el contexto de la clase base
+        context = super(EntradaActualizarVista, self).get_context_data(**kwargs)
+        # anyadimos nuevas variables de contexto al diccionario
+        context['title'] = 'Editar articulo'
+        context['nombre_btn'] = 'Editar'
+        context['listadoTitulos'] = ListadoTitulos()
+        # devolvemos el contexto
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perms('blog.change_entrada'):
+            return redirect(settigns.LOGIN_URL)
+        return super(EntradaActualizarVista, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Entrada editada correctamente')
+        return super(EntradaActualizarVista, self).form_valid(form)
+
+
+class EntradaBorrarVista(generic.DeleteView):
+
+    template_name = 'confirmarEliminacion.html'
+    success_url = reverse_lazy('home:home')
+    model = Entrada
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perms('blog.delete_entrada'):
+            return redirect(settings.LOGIN_URL)
+        return super(EntradaBorrarVista, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(EntradaBorrarVista, self).get_context_data(**kwargs)
+        context['listadoTitulos'] = ListadoTitulos()
+        # devolvemos el contexto
+        return context
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Entrada eliminada correctamente')
+        return super(EntradaBorrarVista, self).form_valid(form)
 
 
