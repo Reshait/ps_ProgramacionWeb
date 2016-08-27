@@ -8,3 +8,4 @@
 - http://tutorial.djangogirls.org/es/
 - https://docs.djangoproject.com/es/1.10/intro/tutorial01/
 - https://github.com/saul-g/El-libro-de-Django/blob/master/Libros/libro_django1.8.pdf
+- http://www.tangowithdjango.com/book17/index.html
