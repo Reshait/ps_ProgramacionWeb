@@ -1,4 +1,7 @@
 # ps_ProgramacionWeb
+
+Trabajo realizado con Django 1.10 y Python 2.7
+
 ### Datos de acceso
     SuperUsuarioAdmin: admin.
     Contraseña: admin
